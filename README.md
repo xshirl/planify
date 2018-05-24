@@ -15,5 +15,24 @@
 - Users can edit and delete a card/list/board
 - Users can see motivational quotes in their board, generated from an API
 - Post MVP - users can drag cards to other lists 
+- Post MVP - users can add comments to cards
+- Post MVP - users can add other users to teams/cards
 
+## Priority Matrix
+- create database of cards, lists, boards - 5 hr
+- Express models, controllers, routes
+- user auth - 10 hr
+- fetch quotes API - 1 hr
+- React - board, lists, cards components - 10 hr
 
+## MVP
+- user auth
+- React components
+- database
+- quotes API
+- Express models, controllers, routes
+
+## Post MVP
+- dragging cards to different lists
+- user can add other users to teams 
+- user can make comments on cards 
