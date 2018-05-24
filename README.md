@@ -1,4 +1,5 @@
 # Planify
+Description: This project is basically a clone of Trello. Users will be able to create boards and in the boards, they can create lists filled with cards of tasks they have to do. This is a mix between a project management tool and an advanced to do list. 
 
 ## Wireframes
 ![Wireframe](./wireframes/wireframe1.png)
