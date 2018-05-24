@@ -1,9 +1,9 @@
 # Planify
 
 ## Wireframes
-![Wireframe](./wireframes/wireframe1.jpg)
-![Wireframe](./wireframes/wireframe2.jpg)
-![Wireframe](./wireframes/wireframe3.jpg)
+![Wireframe](./wireframes/wireframe1.png)
+![Wireframe](./wireframes/wireframe2.png)
+![Wireframe](./wireframes/wireframe3.png)
 
 
 ## User Stories
