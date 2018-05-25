@@ -1,0 +1,35 @@
+{
+  "name": "planify",
+  "version": "1.0.0",
+  "description": "Description: This project is basically a clone of Trello. Users will be able to create boards and in the boards, they can create lists filled with cards of tasks they have to do. This is a mix between a project management tool and an advanced to do list.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "nodemon server.js",
+    "start-client": "cd client && npm start",
+    "reset-db": "psql -f db/schema.sql && psql -f db/seed.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xshirl/planify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xshirl/planify/issues"
+  },
+  "homepage": "https://github.com/xshirl/planify#readme",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "morgan": "^1.9.0",
+    "pg-promise": "^8.4.4"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.17.5"
+  }
+}
