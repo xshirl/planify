@@ -8,3 +8,13 @@ form input[type=text] {
   width: 200px;
   transition: 0.3s;
 }
+
+.newBoard {
+  display:flex;
+  justify-content:center;
+}
+
+.buttons {
+  position:relative;
+  top:0px;
+}

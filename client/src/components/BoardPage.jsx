@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './BoardPage.css';
 import ListForm from './ListForm';
 import List from './List';
-import { Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 
 
 export default class BoardPage extends Component {
@@ -12,6 +12,9 @@ export default class BoardPage extends Component {
       lists: []
     }
 
+    this.handleListSubmit = this.handleListSubmit.bind(this);
+    this.handleListEdit = this.handleListEdit.bind(this);
+    this.handleListDelete = this.handleListDelete.bind(this);
   }
   fetchBoardLists() {
     fetch(`/api/lists/${this.props.board.id}`)
@@ -122,22 +125,53 @@ handleListSubmit(list) {
     this.updateList(list, id);
   }
 
+checkToken() {
+    const authToken = localStorage.getItem('authToken');
+    fetch('/api/auth', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      }
+    })
+    .then(resp => {
+      if (!resp.ok) throw new Error(resp.mesage);
+      return resp.json();
+    })
+    .then(respBody => {
+      this.setState({
+        currentUser: respBody.user
+      })
+    })
+    .catch(err => {
+      console.log('not logged in');
+      localStorage.removeItem('authToken');
+      this.setState({
+        currentUser: null
+      })
+    })
+  }
+
 
   render() {
     return (
       <div>
         <h1>{this.props.board.name} </h1>
+        <Link to={`/boards/${this.props.board.id}/new`}>New List </Link>
+        <Route exact path={`/boards/${this.props.board.id}/new`}
+          render={() => (
+            <ListForm onSubmit={this.handleListSubmit} />
+            )} />
         {this.state.lists.map(list => (
           <div>
 
           <Switch>
 
-
           <Route exact
             path={`/boards/${this.props.board.id}/${list.id}/edit`}
             render={() => (
                 <ListForm
-                  onSubmit={updatedList => this.props.onListEdit(updatedList, updatedList.id)}
+                  onSubmit={updatedList => this.handleListEdit(updatedList, updatedList.id)}
                   initialValue={list} board={this.props.board}
                 />
             )}
@@ -145,7 +179,7 @@ handleListSubmit(list) {
           <Route
             render={() => (
               <List
-                onDelete={()=> this.props.onListDelete(list.id)}
+                onDelete={()=> this.handleListDelete(list.id)}
                 board={this.props.board}
                 list={list}
 

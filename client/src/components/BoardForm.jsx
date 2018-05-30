@@ -10,8 +10,7 @@ export default class BoardForm extends Component {
       redirectHome: false,
       board: Object.assign({
 
-       name: '',
-       user_id: ''
+       name: ''
 
      }, props.initialValue)
    };
@@ -41,20 +40,19 @@ export default class BoardForm extends Component {
 
 
   render() {
-    const { id, name, user_id } = this.state.board
+    const { id, name} = this.state.board
     return (
-      <div>
+      <div className="newBoard">
         <form class="boardForm" onSubmit={this.handleSubmitBoard} className={id ? 'edit' : 'create'}>
         {this.state.redirectHome && <Redirect to='/boards' />}
         {!id && <h2>New board</h2>}
 
-          <input class="board" type="text" value={this.state.board.name} onChange={this.handleInputChange} name="name" placeholder="Board Name" />
+          <input type="text" value={this.state.board.name} onChange={this.handleInputChange} name="name" placeholder="Board Name" />
 
-          <input type="hidden" value="1" onChange={this.handleInputChange} name="user_id" placeholder="User id" />
-
+          <div className="buttons">
           <button type='submit'>{id ? 'Edit' : 'Create'} board</button>
-          <Link to='/'>Cancel</Link>
-
+          <Link to='/boards'>Cancel</Link>
+          </div>
         </form>
         </div>
       )

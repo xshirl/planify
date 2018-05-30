@@ -24,8 +24,10 @@ CREATE TABLE lists (
   board_id INTEGER REFERENCES boards(id)
 );
 
-CREATE TABLE cards (
-  id SERIAL PRIMARY KEY,
-  content TEXT,
-  list_id INTEGER REFERENCES lists(id)
-);
+-- CREATE TABLE cards (
+--   id SERIAL PRIMARY KEY,
+--   content TEXT,
+--   user_id INTEGER REFERENCES users(id),
+--   list_id INTEGER REFERENCES lists(id),
+--   board_id INTEGER REFERENCES boards(id)
+-- );

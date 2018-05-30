@@ -45,15 +45,15 @@ export default class ListForm extends Component {
     return (
       <div>
         <form class="listForm" onSubmit={this.handleSubmitList} className={id ? 'edit' : 'create'}>
-        {this.state.redirectHome && <Redirect to={`/boards/${this.props.initialValue.board_id}`} />}
+        {this.state.redirectHome && <Redirect to={`/boards/${this.state.list.board_id}`} />}
         {!id && <h2>New List</h2>}
 
-          <input class="list" type="text" value={this.state.list.name} onChange={this.handleInputChange} name="name" placeholder="List Name" />
+          <input type="text" value={this.state.list.name} onChange={this.handleInputChange} name="name" placeholder="List Name" />
 
-          <input type="hidden" value={this.props.initialValue.board_id} onChange={this.handleInputChange} name="board_id" placeholder="Board id" />
+          <input type="text" value={this.state.list.board_id} onChange={this.handleInputChange} name="board_id" placeholder="Board id" />
 
           <button type='submit'>{id ? 'Edit' : 'Create'} List</button>
-          <Link to='/'>Cancel</Link>
+          <Link to={`/boards/${this.state.list.board_id}`}>Cancel</Link>
 
         </form>
         </div>

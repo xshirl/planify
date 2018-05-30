@@ -162,6 +162,7 @@ deleteBoard(id) {
 
 
 
+
   logOut(){
     localStorage.setItem('authToken', '');
     this.setState ({
@@ -201,6 +202,8 @@ deleteBoard(id) {
             </ul>
           </nav>
           <Switch>
+            <Route exact path="/boards" render={()=> <BoardList boards={this.state.boards} onDelete={this.handleDelete} onEdit={this.handleEdit}/>} />
+            <Route exact path="/new" render={() => <BoardForm onSubmit={this.handleSubmit} />} />
             {this.state.boards.map(board => (
               <Route
                 path={`/boards/${board.id}`}
@@ -208,9 +211,6 @@ deleteBoard(id) {
                 render={() => <BoardPage board={board} />}
               />
             ))}
-            <Route exact path="/boards" render={()=> <BoardList boards={this.state.boards} onDelete={this.handleDelete} onEdit={this.handleEdit}/>} />
-            <Route exact path="/new" render={() => <BoardForm onSubmit={this.handleSubmit} />} />
-
           </Switch>
         </div>
         )
