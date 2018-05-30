@@ -30,13 +30,15 @@ function getOneBoard(req, res, next) {
 function createBoard(req, res, next) {
   boardDb.createBoard({
     ...req.body,
-    user_id:res.locals.user && res.locals.user.id})
+    user_id: res.locals.user && res.locals.user.id
+  })
   .then(data=> {
     res.locals.createBoard = data;
     next();
   })
   .catch(next);
 }
+
 
 function updateBoard(req, res, next) {
   req.body.id = req.params.id;

@@ -23,7 +23,7 @@ function getOneBoard(id) {
 function createBoard(board) {
   const query = db.one(`
     INSERT INTO boards (name, user_id)
-    VALUES (name = $/name/, user_id = $/user_id/)
+    VALUES ($/name/, $/user_id/)
     RETURNING *`, board);
   return query;
 }

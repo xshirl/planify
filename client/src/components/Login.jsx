@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Login extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-
+        Log in<br />
           <input
             type='text'
             onChange={this.handleInputChange}
@@ -52,6 +52,8 @@ class Login extends Component {
           />
         </label>
         <button type='submit'>Login</button>
+        <br />
+        Don't have an account? Sign up <Link to="/register">here</Link>
       </form>
     )
   }

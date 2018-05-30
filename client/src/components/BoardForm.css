@@ -1,0 +1,10 @@
+form input[type=text] {
+  border: 0;
+  border: 3px solid #eee;
+  font-size: 1.7em;
+  margin: 20px 0;
+  padding: 5px;
+  display: block;
+  width: 200px;
+  transition: 0.3s;
+}

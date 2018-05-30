@@ -7,7 +7,9 @@ import {
 import Login from './components/Login';
 import Registration from './components/Registration';
 import './App.css';
-
+import BoardList from './components/BoardList';
+import BoardForm from './components/BoardForm';
+import BoardPage from './components/BoardPage';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +26,38 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
   }
 
+checkToken() {
+    const authToken = localStorage.getItem('authToken');
+    fetch('/api/auth', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      }
+    })
+    .then(resp => {
+      if (!resp.ok) throw new Error(resp.mesage);
+      return resp.json();
+    })
+    .then(respBody => {
+      this.setState({
+        currentUser: respBody.user
+      })
+    })
+    .catch(err => {
+      console.log('not logged in');
+      localStorage.removeItem('authToken');
+      this.setState({
+        currentUser: null
+      })
+    })
+  }
+
+
+
   fetchUserBoards() {
-    fetch(`/api/boards`)
+
+    fetch(`/api/boards/`)
     .then(resp => {
       if(!resp.ok) throw new Error(resp.statusMessage);
       return resp.json();
@@ -50,11 +82,13 @@ createBoard(board) {
       }
     })
       .then(resp => {
-        console.log(resp)
+
         if (!resp.ok) throw new Error(resp.statusMessage);
         return resp.json();
       })
       .then(resBody => {
+        console.log('Adding board');
+        console.log(resBody);
         this.setState((prevState, props) => {
           return {
             boards: prevState.boards.concat(resBody.data)
@@ -127,32 +161,6 @@ deleteBoard(id) {
 
 
 
-checkToken() {
-    const authToken = localStorage.getItem('authToken');
-    fetch('/api/auth', {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${authToken}`
-      }
-    })
-    .then(resp => {
-      if (!resp.ok) throw new Error(resp.mesage);
-      return resp.json();
-    })
-    .then(respBody => {
-      this.setState({
-        currentUser: respBody.user
-      })
-    })
-    .catch(err => {
-      console.log('not logged in');
-      localStorage.removeItem('authToken');
-      this.setState({
-        currentUser: null
-      })
-    })
-  }
 
   logOut(){
     localStorage.setItem('authToken', '');
@@ -166,6 +174,7 @@ checkToken() {
     this.fetchUserBoards();
     this.checkToken();
   }
+
 
   handleLogin(creds) {
    login(creds)
@@ -183,12 +192,26 @@ checkToken() {
       Site = (
         <div className="home">
           <nav>
+          <div className="header">Planify</div>
             <ul>
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/boards">Boards</Link></li>
+              <li><Link to="/new">New Board </Link> </li>
               <li><Link to="/" onClick={this.logOut}>Log Out </Link></li>
             </ul>
           </nav>
+          <Switch>
+            {this.state.boards.map(board => (
+              <Route
+                path={`/boards/${board.id}`}
+                key={board.id}
+                render={() => <BoardPage board={board} />}
+              />
+            ))}
+            <Route exact path="/boards" render={()=> <BoardList boards={this.state.boards} onDelete={this.handleDelete} onEdit={this.handleEdit}/>} />
+            <Route exact path="/new" render={() => <BoardForm onSubmit={this.handleSubmit} />} />
+
+          </Switch>
         </div>
         )
     }
@@ -201,10 +224,11 @@ checkToken() {
               <li><Link to="/register">Register</Link></li>
             </ul>
           </nav>
-          Log In:
-          <Login onSubmit={this.handleLogin} />
-          Don't have an account? Sign up <Link to="/register">here</Link>
-          <Route path="/register" render={()=> <Registration onSubmit={this.handleRegistration}/>} />
+
+          <Route exact path="/" render={()=> <Login onSubmit={this.handleLogin}/>} />
+          <Switch>
+          <Route exact path="/register" render={()=> <Registration onSubmit={this.handleRegistration}/>} />
+          </Switch>
         </div>
         )
     }

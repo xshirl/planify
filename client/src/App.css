@@ -1,28 +1,55 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  text-align:center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+nav {
+  padding:10px;
+  background-color:gold;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+ul {
+  list-style-type:none;
+
 }
 
-.App-title {
-  font-size: 1.5em;
+ul li {
+  display:inline-block;
+  font-size:20px;
+  padding:10px;
+  font-weight:300;
+
 }
 
-.App-intro {
-  font-size: large;
+a:link {
+  color: maroon;
+  text-decoration:none;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+a:hover {
+  color:black;
+}
+
+a:visited {
+  color:maroon;
+  text-decoration:none;
+}
+
+a:active{
+  color:maroon;
+  text-decoration:none;
+}
+
+.header {
+  float:left;
+  font-size:30px;
+  text-transform:uppercase;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  position:relative;
+  top:15px;
+  color:maroon;
 }
