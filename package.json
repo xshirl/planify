@@ -13,7 +13,7 @@
     "start-server": "nodemon server.js",
     "start-client": "cd client && npm start",
     "reset-db": "psql -f db/schema.sql && psql -f db/seed.sql",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "npm install && cd client && npm install --only-dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
