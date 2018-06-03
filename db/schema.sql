@@ -1,4 +1,4 @@
-\c planify_db
+-- \c planify_db
 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS boards CASCADE;
