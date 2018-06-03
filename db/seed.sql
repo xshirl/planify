@@ -1,4 +1,4 @@
--- \c planify_db
+\c planify_db
 
 INSERT INTO users(email, pw_digest, username)
 VALUES('xshirl525@gmail.com', '$2b$11$vNC97R4lHeDJfibB1NeNTeXcYj2NOcW0sz/DGRRz6j/9QrFnQS/6K',
