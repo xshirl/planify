@@ -163,7 +163,7 @@ checkToken() {
             <ListForm onSubmit={this.handleListSubmit} />
             )} />
         {this.state.lists.map(list => (
-          <div>
+          <div className="listPage">
 
           <Switch>
 

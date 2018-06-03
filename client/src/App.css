@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: "Lato", sans-serif;
   text-align:center;
+  background-image:url(https://turbine-wpengine.netdna-ssl.com/wp-content/uploads/2016/06/The-perfect-to-do-list-660x440.jpg);
+  background-size:cover;
 }
 
 nav {

@@ -1,4 +1,4 @@
-form input[type=text] {
+form input[type=text], input[type=password] {
   border: 0;
   border: 3px solid #eee;
   font-size: 1.7em;
@@ -7,6 +7,8 @@ form input[type=text] {
   display: block;
   width: 200px;
   transition: 0.3s;
+  display:flex;
+  justify-content:center;
 }
 
 .newBoard {
