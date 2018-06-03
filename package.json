@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Description: This project is basically a clone of Trello. Users will be able to create boards and in the boards, they can create lists filled with cards of tasks they have to do. This is a mix between a project management tool and an advanced to do list.",
   "main": "index.js",
+  "engines": {
+    "node":"9.9.0",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "concurrently \"npm run start-server\" \"npm run start-client\"",
